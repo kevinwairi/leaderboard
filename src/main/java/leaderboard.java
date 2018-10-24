@@ -11,7 +11,6 @@ public class leaderboard {
             } else {
                 port = 4567;
             }
-
             setPort(port);
             String layout = "templates/layout.vtl";
             staticFileLocation ("/public");
