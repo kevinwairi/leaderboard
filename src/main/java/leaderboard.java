@@ -63,22 +63,20 @@ public class leaderboard{
                    dp.setPassword(Arrays.toString(pass));
                    String email = request.queryParams("email");
                    dp.setEmail(email);
+
                    String myemail = DBQuery.valemail(dp);
+
                    if(myemail != null){
                        String valdata = DBQuery.profileval(dp);
                        System.out.println(valdata);
-                       if(valdata != null){
+                       if(valdata == null){
                            dbQuery.save_to_leaderboard(dp);
                            response.redirect("/");
-                           System.out.println("Good");
+                           System.out.println("The email or username does not exist");
                        }else{
 
-                           System.out.println("Bad");
+                           System.out.println("The email or username exist");
                        }
-
-
-
-
                    }else{
                        //enter code for caution if email does not exist
                        System.out.println("You have enterd the wrong email");

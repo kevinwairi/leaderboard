@@ -5,7 +5,7 @@ import java.util.List;
 public class DBQuery {
     public static String profileval(DP email) {
         try(Connection con = DB.leaderboard.open()) {
-            String sql = "SELECT uname,email FROM profile where email=:email and uname!=:uname ";
+            String sql = "SELECT uname,email FROM profile where email=:email or uname=:uname";
             String dp = con.createQuery(sql)
                     .addParameter("email", email.getEmail())
                     .addParameter("uname", email.getUname())
