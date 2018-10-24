@@ -49,31 +49,47 @@ public class leaderboard{
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
-            post("/profile",(request,response)->{
+                post("/profile",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
+               try{
+                   String fname = request.queryParams("fname");
+                   dp.setFname(fname);
+                   String sname = request.queryParams("sname");
+                   dp.setSname(sname);
+                   String uname = request.queryParams("uname");
+                   dp.setUname(uname);
+                   String password = request.queryParams("password");
+                   byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+                   dp.setPassword(Arrays.toString(pass));
+                   String email = request.queryParams("email");
+                   dp.setEmail(email);
+                   String myemail = DBQuery.valemail(dp);
+                   if(myemail != null){
+                       String valdata = DBQuery.profileval(dp);
+                       System.out.println(valdata);
+                       if(valdata != null){
+                           dbQuery.save_to_leaderboard(dp);
+                           response.redirect("/");
+                           System.out.println("Good");
+                       }else{
 
-                String fname = request.queryParams("fname");
-                dp.setFname(fname);
-                String sname = request.queryParams("sname");
-                dp.setSname(sname);
-                String uname = request.queryParams("uname");
-                dp.setFname(uname);
-                String password = request.queryParams("passw");
-                dp.setPassword(password);
-                byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-                dp.setPassword(Arrays.toString(pass));
-                String email = request.queryParams("email");
-                dp.setFname(email);
-                String myemail = DBQuery.valemail(dp);
-                if(myemail != null){
-                    dbQuery.save_to_leaderboard(dp);
-                    response.redirect("/");
-                }else{
-                    //enter code for caution if email does not exist
-                  System.out.println("You have enterd the wrong email");
-                }
+                           System.out.println("Bad");
+                       }
+
+
+
+
+                   }else{
+                       //enter code for caution if email does not exist
+                       System.out.println("You have enterd the wrong email");
+                   }
+               }
+               catch(Exception e){
+                   System.out.println();
+               }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
+
 
             post("/login",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
