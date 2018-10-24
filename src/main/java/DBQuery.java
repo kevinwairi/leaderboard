@@ -3,10 +3,14 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class DBQuery {
-    public static List<DP> all() {
-        String sql = "SELECT email FROM email";
-        try(Connection con = DB.moringa.open()) {
-            return con.createQuery(sql).executeAndFetch(DP.class);
+    public static String profileval(DP email) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "SELECT uname,email FROM profile where email=:email and uname!=:uname ";
+            String dp = con.createQuery(sql)
+                    .addParameter("email", email.getEmail())
+                    .addParameter("uname", email.getUname())
+                    .executeScalar(String.class);
+            return dp;
         }
     }
 
@@ -34,8 +38,8 @@ public class DBQuery {
 
     //save data to profile
 public void save_to_leaderboard(DP myprofile) {
-    try (Connection connection = DB.moringa.open()) {
-        String newdata = "INSERT INTO profile(fname,sname,uname,password,email)VALUES(:fname,:sname,:uname,password,:email)";
+    try (Connection connection = DB.leaderboard.open()) {
+        String newdata = "INSERT INTO profile(fname,sname,uname,password,email)VALUES(:fname,:sname,:uname,:password,:email)";
         connection.createQuery(newdata)
                 .addParameter("fname", myprofile.getFname())
                 .addParameter("sname", myprofile.getSname())
