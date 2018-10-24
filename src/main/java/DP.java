@@ -2,13 +2,9 @@ import org.sql2o.Connection;
 
 import java.util.List;
 
-public class DP  {
-    private String fname,sname,uname,password,email,language,link,solution,time;
-    private Integer upvote,downvote;
-
-    public DP(String email) {
-        this.email = email;
-    }
+public class DP {
+    private String fname, sname, uname, password, email, language, link, solution, time;
+    private Integer upvote, downvote;
 
     public String getFname() {
         return fname;
@@ -98,64 +94,6 @@ public class DP  {
         this.downvote = downvote;
     }
 
-    //select all email from moringa database;
-
-    public static List<DP> all() {
-        String sql = "SELECT email FROM email";
-        try(Connection con = DB.moringa.open()) {
-            return con.createQuery(sql).executeAndFetch(DP.class);
-        }
-    }
 
 
-//public static DP find(String email) {
-//    try(Connection con = DB.moringa.open()) {
-//        String sql = "SELECT email FROM email where email=:email";
-//        DP dp = con.createQuery(sql)
-//                .addParameter("email", email)
-//                .executeAndFetchFirst(DP.class);
-//        return dp;
-//    }
-//}
-
-    public void save_to_moringa() {
-        try (Connection connection = DB.moringa.open()) {
-            String newdata = "INSERT INTO email(email)VALUES(:email)";
-            connection.createQuery(newdata)
-                    .addParameter("email", this.email)
-                    .executeUpdate();
-        }
-    }
-
-    @Override
-    public boolean equals(Object otherTask) {
-        if (!(otherTask instanceof DP)) {
-            return false;
-        } else {
-            DP newTask = (DP) otherTask;
-            return this.getEmail().equals(newTask.getEmail())
-                    ;
-        }
-    }
-
-//    @Override
-//    public boolean equals(Object otherTask) {
-//        if (!(otherTask instanceof DP)) {
-//            return false;
-//        } else {
-//            DP newTask = (DP) otherTask;
-//            return this.getFname().equals(newTask.getFname())&&
-//                    this.getSname().equals( newTask.getSname())&&
-//                    this.getUname().equals(newTask.getUname())&&
-//                    this.getPassword().equals(newTask.getPassword())&&
-//                    this.getEmail().equals(newTask.getEmail())&&
-//                    this.getLanguage().equals(newTask.getLanguage())&&
-//                    this.getLink().equals(newTask.getLink())&&
-//                    this.getSolution().equals(newTask.getSolution())&&
-//                    this.getUpvote().equals( newTask.getUpvote())&&
-//                    this.getDownvote().equals(newTask.getDownvote())&&
-//                    this.getTime().equals( newTask.getTime());
-//
-//        }
-//    }
 }
