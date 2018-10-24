@@ -43,7 +43,8 @@ public class leaderboard{
                     model.put("template", "/templates/signUp.vtl");
                     //                dbQuery.save_to_moringa(dp);
                 }else{
-                    response.redirect("/");
+                    //enter code for caution if email does not exist
+                    System.out.println("Email does not exist in moringa DB. Check with your school administration");
                 }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
@@ -63,8 +64,14 @@ public class leaderboard{
                 dp.setPassword(Arrays.toString(pass));
                 String email = request.queryParams("email");
                 dp.setFname(email);
-                dbQuery.save_to_leaderboard(dp);
-                response.redirect("/");
+                String myemail = DBQuery.valemail(dp);
+                if(myemail != null){
+                    dbQuery.save_to_leaderboard(dp);
+                    response.redirect("/");
+                }else{
+                    //enter code for caution if email does not exist
+                  System.out.println("You have enterd the wrong email");
+                }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
@@ -78,39 +85,8 @@ public class leaderboard{
                 byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                 dp.setPassword(Arrays.toString(pass));
 
-
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
-
-
-//            post("/login",((request, response) ->{
-//                Map<String,Object> model = new HashMap<String,Object>();
-//
-//                String adminuname = request.queryParams("userid");
-//                hairdp.setUname(adminuname);
-//
-//                String stylistid = request.queryParams("userid");
-//                hairdp.setStylistid(stylistid);
-//
-//                String password = request.queryParams("passw");
-//                byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-//                hairdp.setPassword(Arrays.toString(pass));
-////            hb.save(hairdp);
-//
-//                String confirmadmin = HairSalonDB.adminval(hairdp);
-//
-//                String confirmstylist = HairSalonDB.stylistval(hairdp);
-//                if (confirmadmin != null){
-//                    model.put("template","/templates/stylistregform.vtl");
-//                }else if(confirmstylist != null){
-//                    model.put("stylstcust",HairSalonDB.stylistcustomers(hairdp));
-//                    model.put("template","/templates/stylistpage.vtl");
-//                }else{
-//                    model.put("template","/templates/caution.vtl");
-//                }
-//                model.put("stylists",HairSalonDB.allstylist());
-//                return new ModelAndView(model,layout);
-//            }),new VelocityTemplateEngine());
 
         }
 
