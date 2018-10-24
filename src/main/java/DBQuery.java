@@ -25,6 +25,18 @@ public class DBQuery {
             return dp;
         }
     }
+    //validate username and password
+
+    public static String valunameandpass(DP email) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "SELECT uname,password FROM profile where uname=:uname and password=:password";
+            String dp = con.createQuery(sql)
+                    .addParameter("uname", email.getUname())
+                    .addParameter("password", email.getPassword())
+                    .executeScalar(String.class);
+            return dp;
+        }
+    }
     //uncomment to save to moringa database
 
 //    public void save_to_moringa(DP myemail) {

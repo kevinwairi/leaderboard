@@ -72,10 +72,10 @@ public class leaderboard{
                        if(valdata == null){
                            dbQuery.save_to_leaderboard(dp);
                            response.redirect("/");
-                           System.out.println("The email or username does not exist");
+//                           System.out.println("The email or username does not exist");
                        }else{
 
-                           System.out.println("The email or username exist");
+//                           System.out.println("The email or username exist");
                        }
                    }else{
                        //enter code for caution if email does not exist
@@ -98,7 +98,15 @@ public class leaderboard{
                 dp.setPassword(password);
                 byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                 dp.setPassword(Arrays.toString(pass));
+                String checklogin = DBQuery.valunameandpass(dp);
+                System.out.println(checklogin);
+                //validate username and password matches
+                if(checklogin != null){
 
+//                    System.out.println("Username and password exist");
+                }else{
+//                    System.out.println("username or password does not exist");
+                }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
