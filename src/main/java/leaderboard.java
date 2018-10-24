@@ -34,8 +34,7 @@ public class leaderboard{
                 return new ModelAndView(model, layout);
             }, new VelocityTemplateEngine());
 
-
-            post("validatemail",(request,response)->{
+            post("/validatemail",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
                 String emailval = request.queryParams("emailval");
                 dp.setEmail(emailval);
@@ -49,7 +48,27 @@ public class leaderboard{
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
-            post("login",(request,response)->{
+            post("/profile",(request,response)->{
+                Map<String, Object> model = new HashMap<String, Object>();
+
+                String fname = request.queryParams("fname");
+                dp.setFname(fname);
+                String sname = request.queryParams("sname");
+                dp.setSname(sname);
+                String uname = request.queryParams("uname");
+                dp.setFname(uname);
+                String password = request.queryParams("passw");
+                dp.setPassword(password);
+                byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+                dp.setPassword(Arrays.toString(pass));
+                String email = request.queryParams("email");
+                dp.setFname(email);
+                dbQuery.save_to_leaderboard(dp);
+                response.redirect("/");
+                return new ModelAndView(model, layout);
+            },new VelocityTemplateEngine());
+
+            post("/login",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
 
                 String uname = request.queryParams("uname");
