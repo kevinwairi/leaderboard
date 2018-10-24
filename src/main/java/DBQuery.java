@@ -5,7 +5,7 @@ import java.util.List;
 public class DBQuery {
     public static String profileval(DP email) {
         try(Connection con = DB.leaderboard.open()) {
-            String sql = "SELECT uname,email FROM profile where email=:email and uname!=:uname ";
+            String sql = "SELECT uname,email FROM profile where email=:email or uname=:uname";
             String dp = con.createQuery(sql)
                     .addParameter("email", email.getEmail())
                     .addParameter("uname", email.getUname())
@@ -21,6 +21,18 @@ public class DBQuery {
             String sql = "SELECT email FROM email where email=:email";
             String dp = con.createQuery(sql)
                     .addParameter("email", email.getEmail())
+                    .executeScalar(String.class);
+            return dp;
+        }
+    }
+    //validate username and password
+
+    public static String valunameandpass(DP email) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "SELECT uname,password FROM profile where uname=:uname and password=:password";
+            String dp = con.createQuery(sql)
+                    .addParameter("uname", email.getUname())
+                    .addParameter("password", email.getPassword())
                     .executeScalar(String.class);
             return dp;
         }
