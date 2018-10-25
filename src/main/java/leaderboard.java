@@ -46,7 +46,7 @@ public class leaderboard {
                     //                dbQuery.save_to_moringa(dp);
                 }else{
                     //enter code for caution if email does not exist
-                    System.out.println("Email does not exist in moringa DB. Check with your school administration");
+                    System.out.println("Email does not exist in moringa DB.java. Check with your school administration");
                 }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());

@@ -14,7 +14,7 @@ public class DBQuery {
         }
     }
 
-//validate email exist in moringa DB
+//validate email exist in moringa DB.java
 
     public static String valemail(DP email) {
         try(Connection con = DB.moringa.open()) {
@@ -40,7 +40,7 @@ public class DBQuery {
     //uncomment to save to moringa database
 
 //    public void save_to_moringa(DP myemail) {
-//        try (Connection connection = DB.moringa.open()) {
+//        try (Connection connection = DB.java.moringa.open()) {
 //            String newdata = "INSERT INTO email(email)VALUES(:email)";
 //            connection.createQuery(newdata)
 //                    .addParameter("email", myemail.getEmail())
