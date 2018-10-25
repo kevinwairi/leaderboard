@@ -1,5 +1,4 @@
 import spark.ModelAndView;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,10 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.*;
+import static spark.Spark.setPort;
+import static spark.Spark.staticFileLocation;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
-public class leaderboard{
-        public static void main(String[] args)throws NoSuchAlgorithmException {
+
+public class leaderboard {
+        public static void main(String[] args) throws NoSuchAlgorithmException{
             ProcessBuilder process = new ProcessBuilder();
             Integer port;
             if (process.environment().get("PORT") != null) {
