@@ -3,13 +3,12 @@ plugins {
     id 'application'
 }
 
-
 group 'com.leaderboard.project'
 version '1.0-SNAPSHOT'
 mainClassName = "leaderboard"
 applicationName = "leaderboard"
-
 sourceCompatibility = 1.8
+
 
 repositories {
     mavenCentral()

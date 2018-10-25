@@ -1,5 +1,49 @@
-#if($username)
-welcome $username
-#else
-<p>Nope!</p>
-#end
+<div class="container">
+  <form id="kata" action="" method="post">
+    <h3>Submit Kata</h3>
+    <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
+    <!--Username...UserID-->
+    <fieldset>
+      <input placeholder="Username" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <!--END->
+
+    <!--Language field-->
+    <fieldset>
+
+      <div class="form-group">
+    <label for="Languages"></label>
+    <select class="form-control" id="selectLanguage" >
+      <option value="Java" multiple >Java</option>
+      <option value="Python">Python</option>
+      <option value="JavaScript">JavaScript</option>
+      <option value="Angular">Angular</option>
+      <option value="TransScript">TranScript</option>
+      <option value="C++">C++</option>
+    </select>
+  </div>
+    </fieldset>
+    <!--END-->
+
+<!--Kata link-->
+    <fieldset>
+      <input placeholder="Kata link starting with https://" type="url" tabindex="4" required>
+    </fieldset>
+    <!--END....-->
+
+    <!--Solution-->
+    <fieldset>
+      <textarea placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
+    </fieldset>
+    <!--END-->
+    <input class="form-control" type="text" placeholder="Kata Rating….Readonly" readonly>
+    <fieldset>
+
+      <!--Button-->
+      <button name="submit" type="submit" id="kata-submit" data-submit="...Sending">Submit Kata</button>
+    </fieldset>
+  </form>
+  <!--End of Form-->
+
+
+</div>
