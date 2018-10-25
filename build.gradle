@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
 }
+
 group 'com.leaderboard.project'
 version '1.0-SNAPSHOT'
 mainClassName = "leaderboard"
