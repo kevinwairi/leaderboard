@@ -94,6 +94,7 @@ public class leaderboard{
 
                 String uname = request.queryParams("uname");
                 dp.setUname(uname);
+                request.session().attribute("username",dp.getUname());
                 String password = request.queryParams("passw");
                 dp.setPassword(password);
                 byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -102,12 +103,20 @@ public class leaderboard{
                 System.out.println(checklogin);
                 //validate username and password matches
                 if(checklogin != null){
-
+                 response.redirect("/getsession");
 //                    System.out.println("Username and password exist");
                 }else{
+                    response.redirect("/");
 //                    System.out.println("username or password does not exist");
                 }
                 return new ModelAndView(model, layout);
+            },new VelocityTemplateEngine());
+
+            get("/getsession",(request,respond)->{
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("username",request.session().attribute("username"));
+                model.put("template","/templates/home.vtl");
+                return new ModelAndView(model,layout);
             },new VelocityTemplateEngine());
 
         }
