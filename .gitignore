@@ -34,3 +34,10 @@ Thumbs.db
 
 # Java and Gradle #
 ############
+.gradle
+.idea
+build
+gradle
+settings.gradle
+gradlew
+gradlew.bat
