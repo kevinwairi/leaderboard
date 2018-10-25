@@ -5,6 +5,7 @@ plugins {
 
 
 
+group 'com.leaderboard.project'
 version '1.0-SNAPSHOT'
 mainClassName = "leaderboard"
 applicationName = "leaderboard"
