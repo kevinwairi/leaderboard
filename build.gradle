@@ -4,10 +4,11 @@ plugins {
 }
 
 
-group 'com.wildlife.project'
+
+group 'com.leaderboard.project'
 version '1.0-SNAPSHOT'
-mainClassName = "wildlifetracker"
-applicationName = "wildlifetracker"
+mainClassName = "leaderboard"
+applicationName = "leaderboard"
 
 sourceCompatibility = 1.8
 
