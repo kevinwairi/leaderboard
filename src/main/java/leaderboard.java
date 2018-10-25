@@ -102,7 +102,6 @@ public class leaderboard {
                 byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                 dp.setPassword(Arrays.toString(pass));
                 String checklogin = DBQuery.valunameandpass(dp);
-                System.out.println(checklogin);
                 //validate username and password matches
                 if(checklogin != null){
                  response.redirect("/getsession");
@@ -119,6 +118,24 @@ public class leaderboard {
                 model.put("username",request.session().attribute("username"));
                 model.put("template","/templates/home.vtl");
                 return new ModelAndView(model,layout);
+            },new VelocityTemplateEngine());
+// insert kata data
+            post("/kata",(request,response)->{
+                Map<String, Object> model = new HashMap<String, Object>();
+                    String uname = request.queryParams("uname");
+                    dp.setUname(uname);
+                    String selectLanguage = request.queryParams("selectLanguage");
+                    dp.setLanguage(selectLanguage);
+                    String link = request.queryParams("link");
+                    dp.setLink(link);
+                    String solution = request.queryParams("solution");
+                    dp.setSolution(solution);
+                    String time = request.queryParams("time");
+                    dp.setTime(time);
+                    dbQuery.save_to_kata(dp);
+                    model.put("username",request.session().attribute("username"));
+                    model.put("template","/templates/home.vtl");
+                return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
         }

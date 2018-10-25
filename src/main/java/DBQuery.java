@@ -61,6 +61,18 @@ public void save_to_leaderboard(DP myprofile) {
                 .executeUpdate();
     }
 }
+    public void save_to_kata(DP katadata) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "INSERT INTO kata (uname, language, link, solution,time) VALUES (:uname, :language, :link, :solution,:time);";
+            con.createQuery(sql)
+                    .addParameter("uname", katadata.getUname())
+                    .addParameter("language", katadata.getLanguage())
+                    .addParameter("link", katadata.getLink())
+                    .addParameter("solution", katadata.getSolution())
+                    .addParameter("time", katadata.getTime())
+                    .executeUpdate();
+        }
+    }
     @Override
     public boolean equals(Object otheruname){
         if (!(otheruname instanceof DP)){
