@@ -1,97 +1,167 @@
-<div class="section">
-    <div class="row">
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+        <a class="navbar-brand" href="#">Leaderboard</a>
+    </nav>
+</div>
 
-        <div class="col-sm-2">
+<!--end of heading-->
+<hr/>
 
-            <table class="table table-primary table-hover table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">UserName</th>
-                    <th scope="col">Language</th>
-                    <th scope="col">Link</th>
-                    <th scope="col">Solution</th>
-                    <th scope="col">Time</th>
-                </tr>
-                </thead>
-                #if ($dps)
-                <tbody>
-                #foreach ($dp in $dps)
-                <tr>
-                    <th scope="row">$dp.getId()</th>
-                    <td>$dp.getUname()</td>
-                    <td>$dp.getLanguage()</td>
-                    <td>$dp.getLink()</td>
-                    <td>$dp.getSolution()</td>
-                    <td>$dp.getTime()</td>
-                </tr>
-                #end
-                </tbody>
-                #end
-            </table>
-        </div>
+<div class="row">
+<!--start table one-->
+    <div class="col-md-3">
+        <p>Katas Solved</p>
+    <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <!--end table one-->
 
-        <div class="col-sm-6">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm-4">
-            <table class="table table-sm-">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
+    <!--start table two-->
+    <div class="col-md-6">
+        <p>Filter Katas by Languages</p>
+    <table class="table ">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User name</th>
+                <th scope="col">Language</th>
+                <th scope="col">link</th>
+                <th scope="col">Solution</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>JAVA</td>
+                <td>@mdo</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, voluptatum.</td>
+                <td>11ms</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>PYTHON</td>
+                <td>@fat</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, perferendis.</td>
+                <td>15ms</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Jacob</td>
+                <td>ANGULAR</td>
+                <td>@fat</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, perferendis.</td>
+                <td>13ms</td>
+            </tr>
+        </tbody>
+    </table>
+        <!--button drop down under kata scores-->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
     </div>
+    <!--end table two-->
+<!--start table three-->
+<div class="col-md-3">
+    <p>Display the most points in all katas solved</p>
+<table class="table table-sm  table-dark">
+<thead>
+<tr>
+    <th scope="col">#</th>
+    <th scope="col">First</th>
+    <th scope="col">Last</th>
+    <th scope="col">Handle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>Otto</td>
+    <td>@mdo</td>
+</tr>
+<tr>
+    <th scope="row">2</th>
+    <td>Jacob</td>
+    <td>Thornton</td>
+    <td>@fat</td>
+</tr>
+<tr>
+    <th scope="row">3</th>
+    <td colspan="2">Larry the Bird</td>
+    <td>@twitter</td>
+</tr>
+</tbody>
+</table>
 </div>
+<!--end of table three-->
+</div>
+
+        <!--close row-->
+
+<!--<div class="col-sm-2" style="background:red">-->
+
+<!--<table class="table table-primary table-hover table-bordered">-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th scope="col">ID</th>-->
+        <!--<th scope="col">UserName</th>-->
+        <!--<th scope="col">Language</th>-->
+        <!--<th scope="col">Link</th>-->
+        <!--<th scope="col">Solution</th>-->
+        <!--<th scope="col">Time</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--#if ($dps)-->
+    <!--<tbody>-->
+    <!--#foreach ($dp in $dps)-->
+    <!--<tr>-->
+        <!--<th scope="row">$dp.getId()</th>-->
+        <!--<td>$dp.getUname()</td>-->
+        <!--<td>$dp.getLanguage()</td>-->
+        <!--<td>$dp.getLink()</td>-->
+        <!--<td>$dp.getSolution()</td>-->
+        <!--<td>$dp.getTime()</td>-->
+    <!--</tr>-->
+    <!--#end-->
+    <!--</tbody>-->
+    <!--#end-->
+<!--</table>-->
+<!--</div>-->
