@@ -1,39 +1,46 @@
+
 <div class="login-container">
-    <div class="clearfix">      <!--sign-up area-->
+    <div class="clearfix">
+
+        <!--sign-up area-->
         <div class="col-left">
             <h4 class="text-uppercase">Don't have an account ?</h4>
             <p>Feel free to click on the Sign-Up button and we will set you up with an account and you can be able to connect with others on the App.</p>
             <label class="btn btn-default btn-outline" for="register">Sign up</label>
             <input class="hidden" type="radio" name="choose-login" checked="checked" id="register"/>
-        </div>      <!--login option-->      <div class="col-right">
+        </div>      <!--login option-->
+
+        <div class="col-right">
             <h4 class="text-uppercase">Have an account ?</h4>
             <p>If you have an account, simply click on login to sign in and pick up from where you left.</p>
             <label class="btn btn-default btn-outline" for="login">Login</label>
             <input class="hidden" type="radio" name="choose-login" id="login"/>
+
             <div class="background-float">
                 <form class="login-form">
                     <h3 class="text-primary text-uppercase">Login</h3>
                     <div class="form-group">
-                        <input class="form-control" id="email" type="email" placeholder="Email" required/>
+                        <input class="form-control" id="email" name="email" type="email" placeholder="Email" required/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="password" type="password" placeholder="Password" required/>
+                        <input class="form-control" id="password" name="password" type="password" placeholder="Password" required/>
                     </div>
                     <button class="btn btn-primary" type="submit">Login</button>
                 </form>
-                <form class="register-form">
+
+                <form method="post" action="" class="register-form" >
                     <h3 class="text-primary text-uppercase">Sign Up</h3>
                     <div class="form-group">
-                        <input class="form-control" id="Fname" type="text" placeholder="First Name" required/>
+                        <input class="form-control" id="Fname" name="Fname" type="text" placeholder="First Name" required/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="Sname" type="text" placeholder="Second Name" required/>
+                        <input class="form-control" id="Sname" name="Sname" type="text" placeholder="Second Name" required/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="Uname" type="text" placeholder="User Name" required/>
+                        <input class="form-control" id="Uname" name="Uname" type="text" placeholder="User Name" required/>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="email1" type="email" placeholder="Email" required/>
+                        <input class="form-control" id="email1" name="email1" type="email" placeholder="Email" required/>
                     </div>
                     <div class="form-group">
                         <input class="form-control" id="password1" type="password" placeholder="Password" required/>
@@ -41,10 +48,10 @@
                     <button class="btn btn-primary" type="submit">Sign Up</button>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
-
 
 
 
