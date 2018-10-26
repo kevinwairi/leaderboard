@@ -49,6 +49,8 @@ public class leaderboard {
                 return new ModelAndView(model, layout);
             }, new VelocityTemplateEngine());
 
+
+
             post("/validatemail",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
                 String emailval = request.queryParams("emailval");
@@ -73,6 +75,7 @@ public class leaderboard {
                    dp.setSname(sname);
                    String uname = request.queryParams("uname");
                    dp.setUname(uname);
+                   request.session().attribute("username",dp.getUname());
                    String password = request.queryParams("password");
                    byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                    dp.setPassword(Arrays.toString(pass));
@@ -86,11 +89,12 @@ public class leaderboard {
                        System.out.println(valdata);
                        if(valdata == null){
                            dbQuery.save_to_leaderboard(dp);
-                           response.redirect("/");
-//                           System.out.println("The email or username does not exist");
+                           request.session().attribute("username",dp.getUname());
+                           response.redirect("/getsession");
+                           System.out.println("The email or username does not exist");
                        }else{
 
-//                           System.out.println("The email or username exist");
+                           System.out.println("The email or username exist");
                        }
                    }else{
                        //enter code for caution if email does not exist
@@ -132,6 +136,7 @@ public class leaderboard {
                 dp.setUname(df);
                 model.put("mylnk",DBQuery.fetch_link(dp));
                 model.put("username",df);
+                model.put("allkata",DBQuery.allkata());
                 model.put("template","/templates/home.vtl");
                 return new ModelAndView(model,layout);
             },new VelocityTemplateEngine());
@@ -165,17 +170,31 @@ public class leaderboard {
                         System.out.println("not same");
                         dbQuery.save_to_kata(dp);
                     }
-
                     model.put("username",request.session().attribute("username"));
                     response.redirect("/getsession");
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
-            get("/fetchlink",(request,response)->{
-                Map<String,Object> model = new HashMap<String,Object>();
-
-                return new ModelAndView(model,layout);
-            },new VelocityTemplateEngine());
+//
+//            post("/searchlang",(request,response)->{
+//                Map<String, Object> model = new HashMap<String, Object>();
+//                String searchlang = request.queryParams("searchlang");
+//                dp.setSearchlang(searchlang);
+//                model.put("username",request.session().attribute("username"));
+//                response.redirect("langresult");
+//                return new ModelAndView(model, layout);
+//            },new VelocityTemplateEngine());
+//
+//
+//            get("/langresult",(request,response)->{
+//                Map<String,Object> model = new HashMap<String,Object>();
+//                String df = request.session().attribute("username");
+//                dp.setUname(df);
+//                model.put("username",df);
+//                model.put("bylang", DBQuery.searchkata(dp));
+//                model.put("template","/templates/home.vtl");
+//                return new ModelAndView(model,layout);
+//            },new VelocityTemplateEngine());
 
         }
 
