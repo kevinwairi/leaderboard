@@ -73,6 +73,7 @@ public class leaderboard {
                    dp.setSname(sname);
                    String uname = request.queryParams("uname");
                    dp.setUname(uname);
+                   request.session().attribute("username",dp.getUname());
                    String password = request.queryParams("password");
                    byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                    dp.setPassword(Arrays.toString(pass));
@@ -86,11 +87,12 @@ public class leaderboard {
                        System.out.println(valdata);
                        if(valdata == null){
                            dbQuery.save_to_leaderboard(dp);
-                           response.redirect("/");
-//                           System.out.println("The email or username does not exist");
+                           request.session().attribute("username",dp.getUname());
+                           response.redirect("/getsession");
+                           System.out.println("The email or username does not exist");
                        }else{
 
-//                           System.out.println("The email or username exist");
+                           System.out.println("The email or username exist");
                        }
                    }else{
                        //enter code for caution if email does not exist
