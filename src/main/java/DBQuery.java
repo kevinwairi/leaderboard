@@ -63,7 +63,7 @@ public void save_to_leaderboard(DP myprofile) {
 }
     public void save_to_kata(DP katadata) {
         try(Connection con = DB.leaderboard.open()) {
-            String sql = "INSERT INTO kata (uname, language, link, solution,time,title) VALUES (:uname, :language, :link, :solution,:time,:title);";
+            String sql = "INSERT INTO kata (uname, language, link, solution,time,title,mykatas) VALUES (:uname, :language, :link, :solution,:time,:title,:mykatas);";
             con.createQuery(sql)
                     .addParameter("uname", katadata.getUname())
                     .addParameter("language", katadata.getLanguage())
@@ -71,6 +71,17 @@ public void save_to_leaderboard(DP myprofile) {
                     .addParameter("solution", katadata.getSolution())
                     .addParameter("time", katadata.getTime())
                     .addParameter("title", katadata.getTitle())
+                    .addParameter("mykatas", katadata.getMykatas())
+                    .executeUpdate();
+        }
+    }
+    public void updatekata(DP upkata) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "UPDATE kata SET solution =:solution,time=:time WHERE title =:title";
+            con.createQuery(sql)
+                    .addParameter("solution", upkata.getSolution())
+                    .addParameter("time", upkata.getTime())
+                    .addParameter("title", upkata.getTitle())
                     .executeUpdate();
         }
     }
@@ -80,6 +91,15 @@ public void save_to_leaderboard(DP myprofile) {
             return con.createQuery(sql)
                     .addParameter("uname", title.getUname())
                     .executeAndFetch(DP.class);
+        }
+    }
+    public static String valtitle(DP valtitle) {
+        try(Connection con = DB.leaderboard.open()) {
+            String sql = "SELECT title FROM kata where uname=:uname";
+            String dp = con.createQuery(sql)
+                    .addParameter("uname", valtitle.getUname())
+                    .executeScalar(String.class);
+            return dp;
         }
     }
     @Override

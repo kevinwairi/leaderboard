@@ -143,7 +143,18 @@ public class leaderboard {
                     dp.setSolution(solution);
                     String time = request.queryParams("time");
                     dp.setTime(time);
-                    dbQuery.save_to_kata(dp);
+
+                    Integer addnum = 1;
+                    dp.setMykatas(addnum);
+
+                    if(title.equals(DBQuery.valtitle(dp))){
+                        System.out.println("same");
+                        dbQuery.updatekata(dp);
+                    }else{
+                        System.out.println("not same");
+                        dbQuery.save_to_kata(dp);
+                    }
+
                     model.put("username",request.session().attribute("username"));
                     response.redirect("/getsession");
                 return new ModelAndView(model, layout);
