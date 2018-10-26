@@ -31,10 +31,21 @@ public class leaderboard {
             DP dp = new DP();
             DBQuery dbQuery = new DBQuery();
 
-
             get("/", (request, response) -> {
                 Map<String, Object> model = new HashMap<String, Object>();
                 model.put("template", "/templates/login.vtl");
+                return new ModelAndView(model, layout);
+            }, new VelocityTemplateEngine());
+
+            get("/landing", (request, response) -> {
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("template", "/templates/landing.vtl");
+                return new ModelAndView(model, layout);
+            }, new VelocityTemplateEngine());
+
+            get("/home", (request, response) -> {
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("template", "/templates/home.vtl");
                 return new ModelAndView(model, layout);
             }, new VelocityTemplateEngine());
 

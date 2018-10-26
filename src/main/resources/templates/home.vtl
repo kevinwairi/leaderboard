@@ -1,6 +1,8 @@
 
 <div class="container">
+
   <form id="kata" action="/kata" method="post">
+
     <h3>Submit Kata</h3>
     <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
     <!--Username...UserID-->
@@ -8,6 +10,7 @@
     <fieldset>
         <input placeholder="Username" name="uname" value="$username" id="uname" type="text" tabindex="1" readonly/>
     </fieldset>
+
     #end
     <!--END->
     <!--Language field-->
@@ -24,17 +27,20 @@
     </select>
   </div>
     </fieldset>
-    <!--END-->
+    END
 
-<!--Kata link-->
+Kata link
     <fieldset>
       <input placeholder="Kata link starting with https://" name="link" type="url" tabindex="4" required>
     </fieldset>
+
     <!--END....-->
     <!--Solution-->
+
     <fieldset>
       <textarea name="solution" id="solution" placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
     </fieldset>
+
     <!--END-->
     <input class="form-control" name="time" id="time" type="text" placeholder="Time taken">
     <fieldset>
