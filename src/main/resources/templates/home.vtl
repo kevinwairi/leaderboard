@@ -1,3 +1,12 @@
+#if($username)
+#foreach($mylnks in $mylnk)
+<a href="$mylnks.getLink()">$mylnks.getTitle()
+</a>
+#end
+#else
+<p>Nop</p>
+#end
+
 <div class="container">
   <form id="kata" action="/kata" method="post">
     <h3>Submit Kata</h3>
