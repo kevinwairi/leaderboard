@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="home.css"/>
 
-
    <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container-fluid">
          <div class="navbar-header">
@@ -18,6 +17,8 @@
              <li><a href="#">View</a></li>
              <li><a href="#">Profile</a></li>
              <li><a href="#">Help</a></li>
+             <li><a href="<button id="button" class="button" onclick="document.getElementById('signup').style.display = 'block'">Submit</button>">Submit kata</a></li>
+           
            </ul>
 
            <!--SEARCH BAR THAT CAN MAYBE BE INCORPORATED-->
@@ -39,21 +40,14 @@
 
      <div class="container-fluid">
        <div class="row">
-
          <!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> -->
            <h1 class="page-header">Dashboard</h1>
-
            <div class="row placeholders">
              <div class="col-md-3">
                <img src="earnings.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-
              </div>
            </div>
-
        </div>
-
-
-
            <h2 class="sub-header">User Katas</h2>
            <!-- <div class="col-md-6"> -->
            <div class="col-md-9"></div>
@@ -116,3 +110,62 @@
      </div>
      </div>
    </div>
+
+<button id="button" class="button" onclick="document.getElementById('signup').style.display = 'block'">Submit</button>
+
+<div class="signup" id="signup">
+
+<div id="signup-box">
+    <div class="box">
+        <h1> Submit Kata</h1>
+        <form action="/login" method="post">
+
+            <h3>Submit Kata</h3>
+            <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
+            <!--Username...UserID-->
+            #if($username)
+            <fieldset>
+                <input placeholder="Username" name="uname" value="$username" id="uname" type="text" tabindex="1" readonly/>
+            </fieldset>
+
+            #end
+            <!--END->
+            <!--Language field-->
+            <fieldset>
+                <div class="form-group">
+                    <label for="Languages"></label>
+                    <select class="form-control" name="selectLanguage" id="selectLanguage" autofocus>
+                        <option value="Java" multiple >Java</option>
+                        <option value="Python">Python</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Angular">Angular</option>
+                        <option value="TransScript">TranScript</option>
+                        <option value="C++">C++</option>
+                    </select>
+                </div>
+            </fieldset>
+            END
+
+            Kata link
+            <fieldset>
+                <input placeholder="Kata link starting with https://" name="link" type="url" tabindex="4" required>
+            </fieldset>
+
+            <!--END....-->
+            <!--Solution-->
+
+            <fieldset>
+                <textarea name="solution" id="solution" placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
+            </fieldset>
+
+            <!--END-->
+            <input class="form-control" name="time" id="time" type="text" placeholder="Time taken">
+            <fieldset>
+                <!--Button-->
+                <button name="submit" type="submit" id="kata-submit" data-submit="...Sending">Submit Kata</button>
+            </fieldset>
+        </form>
+    <div class="close" onclick="document.getElementById('signup').style.display = 'none'">+</div>
+    </div>
+
+</div>
