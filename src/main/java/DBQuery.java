@@ -108,6 +108,14 @@ public void save_to_leaderboard(DP myprofile) {
             return con.createQuery(sql).executeAndFetch(DP.class);
         }
     }
+    public static List<DP> searchkata(DP lang){
+        String sql = "SELECT uname,language,link,solution,time,title FROM kata WHERE language=:language";
+        try(Connection con = DB.leaderboard.open()) {
+            return con.createQuery(sql)
+                    .addParameter("language", lang.getLanguage())
+                    .executeAndFetch(DP.class);
+        }
+    }
     @Override
     public boolean equals(Object otheruname){
         if (!(otheruname instanceof DP)){

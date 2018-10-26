@@ -49,6 +49,8 @@ public class leaderboard {
                 return new ModelAndView(model, layout);
             }, new VelocityTemplateEngine());
 
+
+
             post("/validatemail",(request,response)->{
                 Map<String, Object> model = new HashMap<String, Object>();
                 String emailval = request.queryParams("emailval");
@@ -168,17 +170,31 @@ public class leaderboard {
                         System.out.println("not same");
                         dbQuery.save_to_kata(dp);
                     }
-
                     model.put("username",request.session().attribute("username"));
                     response.redirect("/getsession");
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
 
-            get("/fetchlink",(request,response)->{
-                Map<String,Object> model = new HashMap<String,Object>();
-
-                return new ModelAndView(model,layout);
-            },new VelocityTemplateEngine());
+//
+//            post("/searchlang",(request,response)->{
+//                Map<String, Object> model = new HashMap<String, Object>();
+//                String searchlang = request.queryParams("searchlang");
+//                dp.setSearchlang(searchlang);
+//                model.put("username",request.session().attribute("username"));
+//                response.redirect("langresult");
+//                return new ModelAndView(model, layout);
+//            },new VelocityTemplateEngine());
+//
+//
+//            get("/langresult",(request,response)->{
+//                Map<String,Object> model = new HashMap<String,Object>();
+//                String df = request.session().attribute("username");
+//                dp.setUname(df);
+//                model.put("username",df);
+//                model.put("bylang", DBQuery.searchkata(dp));
+//                model.put("template","/templates/home.vtl");
+//                return new ModelAndView(model,layout);
+//            },new VelocityTemplateEngine());
 
         }
 
