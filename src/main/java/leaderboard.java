@@ -134,6 +134,7 @@ public class leaderboard {
                 dp.setUname(df);
                 model.put("mylnk",DBQuery.fetch_link(dp));
                 model.put("username",df);
+                model.put("allkata",DBQuery.allkata());
                 model.put("template","/templates/home.vtl");
                 return new ModelAndView(model,layout);
             },new VelocityTemplateEngine());
