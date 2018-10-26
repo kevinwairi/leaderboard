@@ -1,52 +1,59 @@
 
-<div class="container">
+<button id="button" class="button" onclick="document.getElementById('signup').style.display = 'block'">Submit</button>
 
-  <form id="kata" action="/kata" method="post">
+<div class="signup" id="signup">
 
-    <h3>Submit Kata</h3>
-    <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
-    <!--Username...UserID-->
-  #if($username)
-    <fieldset>
-        <input placeholder="Username" name="uname" value="$username" id="uname" type="text" tabindex="1" readonly/>
-    </fieldset>
+<div id="signup-box">
+    <div class="box">
+        <h1> Submit Kata</h1>
+        <form action="/login" method="post">
 
-    #end
-    <!--END->
-    <!--Language field-->
-    <fieldset>
-      <div class="form-group">
-    <label for="Languages"></label>
-    <select class="form-control" name="selectLanguage" id="selectLanguage" autofocus>
-      <option value="Java" multiple >Java</option>
-      <option value="Python">Python</option>
-      <option value="JavaScript">JavaScript</option>
-      <option value="Angular">Angular</option>
-      <option value="TransScript">TranScript</option>
-      <option value="C++">C++</option>
-    </select>
-  </div>
-    </fieldset>
-    END
+            <h3>Submit Kata</h3>
+            <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
+            <!--Username...UserID-->
+            #if($username)
+            <fieldset>
+                <input placeholder="Username" name="uname" value="$username" id="uname" type="text" tabindex="1" readonly/>
+            </fieldset>
 
-Kata link
-    <fieldset>
-      <input placeholder="Kata link starting with https://" name="link" type="url" tabindex="4" required>
-    </fieldset>
+            #end
+            <!--END->
+            <!--Language field-->
+            <fieldset>
+                <div class="form-group">
+                    <label for="Languages"></label>
+                    <select class="form-control" name="selectLanguage" id="selectLanguage" autofocus>
+                        <option value="Java" multiple >Java</option>
+                        <option value="Python">Python</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Angular">Angular</option>
+                        <option value="TransScript">TranScript</option>
+                        <option value="C++">C++</option>
+                    </select>
+                </div>
+            </fieldset>
+            END
 
-    <!--END....-->
-    <!--Solution-->
+            Kata link
+            <fieldset>
+                <input placeholder="Kata link starting with https://" name="link" type="url" tabindex="4" required>
+            </fieldset>
 
-    <fieldset>
-      <textarea name="solution" id="solution" placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
-    </fieldset>
+            <!--END....-->
+            <!--Solution-->
 
-    <!--END-->
-    <input class="form-control" name="time" id="time" type="text" placeholder="Time taken">
-    <fieldset>
-      <!--Button-->
-      <button name="submit" type="submit" id="kata-submit" data-submit="...Sending">Submit Kata</button>
-    </fieldset>
-  </form>
-  <!--End of Form-->
+            <fieldset>
+                <textarea name="solution" id="solution" placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
+            </fieldset>
+
+            <!--END-->
+            <input class="form-control" name="time" id="time" type="text" placeholder="Time taken">
+            <fieldset>
+                <!--Button-->
+                <button name="submit" type="submit" id="kata-submit" data-submit="...Sending">Submit Kata</button>
+            </fieldset>
+        </form>
+    <div class="close" onclick="document.getElementById('signup').style.display = 'none'">+</div>
+    </div>
+
 </div>
