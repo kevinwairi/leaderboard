@@ -1,5 +1,5 @@
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">Leaderboard</a>
     </nav>
 </div>
@@ -7,10 +7,24 @@
 <!--end of heading-->
 <hr/>
 
-<div class="row">
+<div class="row" style="background: skyblue;">
 <!--start table one-->
     <div class="col-md-3">
         <p>Katas Solved</p>
+        <hr/>
+        <!--dropdown for kata filter-->
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown link
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+        <!--end-->
     <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -47,6 +61,7 @@
     <!--start table two-->
     <div class="col-md-6">
         <p>Filter Katas by Languages</p>
+        <hr/>
     <table class="table ">
         <thead class="thead-light">
             <tr>
@@ -101,6 +116,7 @@
 <!--start table three-->
 <div class="col-md-3">
     <p>Display the most points in all katas solved</p>
+    <hr/>
 <table class="table table-sm  table-dark">
 <thead>
 <tr>
