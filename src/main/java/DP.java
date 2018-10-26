@@ -3,7 +3,26 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class DP {
-    private String fname, sname, uname, password, email, language, link, solution, time;
+    private String fname;
+    private String sname;
+    private String uname;
+    private String password;
+    private String email;
+    private String language;
+    private String link;
+    private String solution;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String time;
+
+    public String getTitle() {
+        return title;
+    }
+
+    private String title;
     private Integer upvote, downvote;
 
     public String getFname() {
