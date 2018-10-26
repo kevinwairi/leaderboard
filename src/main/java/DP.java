@@ -12,6 +12,16 @@ public class DP {
     private String link;
     private String solution;
 
+    public void setSearchlang(String searchlang) {
+        this.searchlang = searchlang;
+    }
+
+    public String getSearchlang() {
+        return searchlang;
+    }
+
+    private String searchlang;
+
     public void setMykatas(Integer mykatas) {
         this.mykatas = mykatas;
     }
