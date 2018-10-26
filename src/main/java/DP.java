@@ -12,6 +12,16 @@ public class DP {
     private String link;
     private String solution;
 
+    public void setMykatas(Integer mykatas) {
+        this.mykatas = mykatas;
+    }
+
+    public Integer getMykatas() {
+        return mykatas;
+    }
+
+    private Integer mykatas;
+
     public void setTitle(String title) {
         this.title = title;
     }
