@@ -1,19 +1,23 @@
+
 <div class="container">
-  <form id="kata" action="" method="post">
+
+  <form id="kata" action="/kata" method="post">
+
     <h3>Submit Kata</h3>
     <h4>Submit your Kata Solution and get feedback from fellow students!</h4>
     <!--Username...UserID-->
+  #if($username)
     <fieldset>
-      <input placeholder="Username" type="text" tabindex="1" required autofocus>
+        <input placeholder="Username" name="uname" value="$username" id="uname" type="text" tabindex="1" readonly/>
     </fieldset>
-    <!--END->
 
+    #end
+    <!--END->
     <!--Language field-->
     <fieldset>
-
       <div class="form-group">
     <label for="Languages"></label>
-    <select class="form-control" id="selectLanguage" >
+    <select class="form-control" name="selectLanguage" id="selectLanguage" autofocus>
       <option value="Java" multiple >Java</option>
       <option value="Python">Python</option>
       <option value="JavaScript">JavaScript</option>
@@ -23,27 +27,26 @@
     </select>
   </div>
     </fieldset>
-    <!--END-->
+    END
 
-<!--Kata link-->
+Kata link
     <fieldset>
-      <input placeholder="Kata link starting with https://" type="url" tabindex="4" required>
+      <input placeholder="Kata link starting with https://" name="link" type="url" tabindex="4" required>
     </fieldset>
+
     <!--END....-->
-
     <!--Solution-->
-    <fieldset>
-      <textarea placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
-    </fieldset>
-    <!--END-->
-    <input class="form-control" type="text" placeholder="Kata Rating….Readonly" readonly>
-    <fieldset>
 
+    <fieldset>
+      <textarea name="solution" id="solution" placeholder="Enter your Solution Here...." tabindex="5" required></textarea>
+    </fieldset>
+
+    <!--END-->
+    <input class="form-control" name="time" id="time" type="text" placeholder="Time taken">
+    <fieldset>
       <!--Button-->
       <button name="submit" type="submit" id="kata-submit" data-submit="...Sending">Submit Kata</button>
     </fieldset>
   </form>
   <!--End of Form-->
-
-
 </div>

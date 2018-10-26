@@ -1,0 +1,102 @@
+/*body {
+ background: url(./img/background.jpeg) no-repeat;
+ background-size: cover;
+}*/
+
+.sign-up{
+ margin-top: 50px;
+  font-size: 16px;
+}
+#png{
+    height:100px;
+    width:100px;
+}
+.form-horizontal {
+ display: none;
+}
+.login-container {
+ position: relative;
+ width: 640px;
+ height: 350px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 50px;
+ padding: 20px;
+ background: rgba(0, 0, 0, 0.7);
+ color: #fff;
+ font-size: 16px;
+ font-weight: 100;
+ letter-spacing: 1px;
+}.col-left,
+.col-right {
+ width: 300px;
+ padding: 10px;
+ float: left;
+}.btn {
+ border-radius: 0;
+}.btn-outline {
+ background: transparent;
+ color: #fff;
+ font-size: 18px;
+ font-weight: 100;
+ letter-spacing: 2px;
+ text-transform: uppercase;
+ transition: background, color 0.3s ease-out;
+}
+.btn-outline:hover {
+ background: #fff;
+ color: #1f1f21
+;
+}
+.background-float {
+ position: absolute;
+ top: -1px;
+ bottom: -1px;
+ left: 20px;
+ width: 300px;
+ height:350px;
+ padding-left: 10px;
+ padding-right: 10px;
+ background: #fff;
+ color: #1f1f21
+;
+ box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+ transition: left 1s cubic-bezier(0.68, -0.26, 0.21, 1.21);
+ z-index: 1;
+}
+.background-float form {
+ height: 0;
+ overflow: hidden;
+ visibility: hidden;
+ opacity: 0;
+ transition: opacity 1s cubic-bezier(0.4, 0, 1, 1);
+}
+.background-float form.register-form {
+ height: auto;
+ opacity: 1;
+ visibility: visible;
+}
+.background-float form .form-control {
+ border-radius: 0;
+}[name="choose-login"]:checked {
+ position: relative;
+ color: #1f1f21
+;
+ border-color: #1f1f21
+;
+ z-index: 1;
+}
+[name="choose-login"]:checked + .background-float {
+ position: absolute;
+ left: 320px;
+}
+[name="choose-login"]:checked + .background-float .register-form {
+ height: 0;
+ opacity: 0;
+ visibility: hidden;
+}
+[name="choose-login"]:checked + .background-float .login-form {
+ height: auto;
+ opacity: 1;
+ visibility: visible;
+}

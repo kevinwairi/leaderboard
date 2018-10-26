@@ -4,16 +4,18 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import static spark.Spark.*;
-import static spark.Spark.setPort;
-import static spark.Spark.staticFileLocation;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 
 public class leaderboard {
-        public static void main(String[] args) throws NoSuchAlgorithmException{
+        public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
             ProcessBuilder process = new ProcessBuilder();
             Integer port;
             if (process.environment().get("PORT") != null) {
@@ -29,10 +31,21 @@ public class leaderboard {
             DP dp = new DP();
             DBQuery dbQuery = new DBQuery();
 
-
             get("/", (request, response) -> {
                 Map<String, Object> model = new HashMap<String, Object>();
                 model.put("template", "/templates/login.vtl");
+                return new ModelAndView(model, layout);
+            }, new VelocityTemplateEngine());
+
+            get("/landing", (request, response) -> {
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("template", "/templates/landing.vtl");
+                return new ModelAndView(model, layout);
+            }, new VelocityTemplateEngine());
+
+            get("/home", (request, response) -> {
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("template", "/templates/home.vtl");
                 return new ModelAndView(model, layout);
             }, new VelocityTemplateEngine());
 
@@ -46,7 +59,7 @@ public class leaderboard {
                     //                dbQuery.save_to_moringa(dp);
                 }else{
                     //enter code for caution if email does not exist
-                    System.out.println("Email does not exist in moringa DB. Check with your school administration");
+                    System.out.println("Email does not exist in moringa DB.java. Check with your school administration");
                 }
                 return new ModelAndView(model, layout);
             },new VelocityTemplateEngine());
@@ -102,7 +115,6 @@ public class leaderboard {
                 byte[] pass = digest.digest(password.getBytes(StandardCharsets.UTF_8));
                 dp.setPassword(Arrays.toString(pass));
                 String checklogin = DBQuery.valunameandpass(dp);
-                System.out.println(checklogin);
                 //validate username and password matches
                 if(checklogin != null){
                  response.redirect("/getsession");
@@ -116,8 +128,52 @@ public class leaderboard {
 
             get("/getsession",(request,respond)->{
                 Map<String, Object> model = new HashMap<String, Object>();
-                model.put("username",request.session().attribute("username"));
+                String df = request.session().attribute("username");
+                dp.setUname(df);
+                model.put("mylnk",DBQuery.fetch_link(dp));
+                model.put("username",df);
                 model.put("template","/templates/home.vtl");
+                return new ModelAndView(model,layout);
+            },new VelocityTemplateEngine());
+
+
+// insert kata data
+            post("/kata",(request,response)->{
+                Map<String, Object> model = new HashMap<String, Object>();
+                    String uname = request.queryParams("uname");
+                    dp.setUname(uname);
+                    String selectLanguage = request.queryParams("selectLanguage");
+                    dp.setLanguage(selectLanguage);
+                    String link = request.queryParams("link");
+                    dp.setLink(link);
+                    //fetch title from the link below code
+                    Document doc = Jsoup.connect(dp.getLink()).get();
+                    String title = doc.title();
+                    dp.setTitle(title);
+                    String solution = request.queryParams("solution");
+                    dp.setSolution(solution);
+                    String time = request.queryParams("time");
+                    dp.setTime(time);
+
+                    Integer addnum = 1;
+                    dp.setMykatas(addnum);
+
+                    if(title.equals(DBQuery.valtitle(dp))){
+                        System.out.println("same");
+                        dbQuery.updatekata(dp);
+                    }else{
+                        System.out.println("not same");
+                        dbQuery.save_to_kata(dp);
+                    }
+
+                    model.put("username",request.session().attribute("username"));
+                    response.redirect("/getsession");
+                return new ModelAndView(model, layout);
+            },new VelocityTemplateEngine());
+
+            get("/fetchlink",(request,response)->{
+                Map<String,Object> model = new HashMap<String,Object>();
+
                 return new ModelAndView(model,layout);
             },new VelocityTemplateEngine());
 
