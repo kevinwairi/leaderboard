@@ -3,7 +3,46 @@ import org.sql2o.Connection;
 import java.util.List;
 
 public class DP {
-    private String fname, sname, uname, password, email, language, link, solution, time;
+    private String fname;
+    private String sname;
+    private String uname;
+    private String password;
+    private String email;
+    private String language;
+    private String link;
+    private String solution;
+
+    public void setSearchlang(String searchlang) {
+        this.searchlang = searchlang;
+    }
+
+    public String getSearchlang() {
+        return searchlang;
+    }
+
+    private String searchlang;
+
+    public void setMykatas(Integer mykatas) {
+        this.mykatas = mykatas;
+    }
+
+    public Integer getMykatas() {
+        return mykatas;
+    }
+
+    private Integer mykatas;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String time;
+
+    public String getTitle() {
+        return title;
+    }
+
+    private String title;
     private Integer upvote, downvote;
 
     public String getFname() {
