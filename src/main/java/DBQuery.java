@@ -102,6 +102,12 @@ public void save_to_leaderboard(DP myprofile) {
             return dp;
         }
     }
+    public static List<DP> allkata(){
+        String sql = "SELECT uname,language,link,solution,time,title FROM kata";
+        try(Connection con = DB.leaderboard.open()) {
+            return con.createQuery(sql).executeAndFetch(DP.class);
+        }
+    }
     @Override
     public boolean equals(Object otheruname){
         if (!(otheruname instanceof DP)){
